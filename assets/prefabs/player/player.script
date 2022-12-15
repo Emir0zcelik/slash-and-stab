@@ -139,12 +139,21 @@ function on_input(self, action_id, action)
 		self.sprinting = true
 	elseif action_id == hash("up") and action.pressed then
 		if not self.ground_contact then
-			self.onAir = trues
+			self.onAir = true
 		else
 			self.onAir = false
 		end
 		if not self.onAir then
 			self.velocity.y = 500
+			if self.standRight then
+				msg.post("#sprite", "play_animation", {id = hash(status .. "jump_right")})
+			elseif not self.standRight then
+				msg.post("#sprite", "play_animation", {id = hash(status .. "jump_left")})
+			elseif self.standRight and self.swordTaken then
+				msg.post("#sprite", "play_animation", {id = hash(status .. "jump_right")})
+			elseif not self.standRight and self.swordTaken then
+				msg.post("#sprite", "play_animation", {id = hash(status .. "jump_right")})
+			end
 		end
 	end
 end
