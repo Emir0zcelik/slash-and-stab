@@ -1,5 +1,5 @@
 animations {
-  id: "idle_left"
+  id: "normal_idle_left"
   images {
     image: "/assets/images/player_idle_00.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
@@ -14,7 +14,7 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "walk_right"
+  id: "normal_walk_right"
   images {
     image: "/assets/images/player_walking_00.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
@@ -53,7 +53,7 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "walk_left"
+  id: "normal_walk_left"
   images {
     image: "/assets/images/player_walking_00.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
@@ -92,7 +92,7 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "idle_right"
+  id: "normal_idle_right"
   images {
     image: "/assets/images/player_idle_00.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
@@ -104,6 +104,114 @@ animations {
   playback: PLAYBACK_LOOP_FORWARD
   fps: 2
   flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "sword_idle_left"
+  images {
+    image: "/assets/images/sword_idle_00.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_idle_01.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 2
+  flip_horizontal: 1
+  flip_vertical: 0
+}
+animations {
+  id: "sword_idle_right"
+  images {
+    image: "/assets/images/sword_idle_00.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_idle_01.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 2
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "sword_walk_right"
+  images {
+    image: "/assets/images/sword_walking_00.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_01.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_02.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_03.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_04.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_05.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_06.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_07.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "sword_walk_left"
+  images {
+    image: "/assets/images/sword_walking_00.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_01.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_02.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_03.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_04.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_05.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_06.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/images/sword_walking_07.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 1
   flip_vertical: 0
 }
 margin: 0

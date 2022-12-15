@@ -2,7 +2,10 @@ local gravity = -20
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	self.swordTaken = false
+	self.posOfHand = vmath.vector3()
 	self.velocity = vmath.vector3(0, 0, 0)
+	self.onAir = false
 	self.ground_contact = false
 	self.sprinting = false
 	self.ladder_contact = false
@@ -16,7 +19,7 @@ end
 
 function update(self, dt)
 	local gravity = vmath.vector3(0, gravity, 0)
-
+	self.posOfHand = go.get_position("#playerHand")
 
 	if self.actions[hash("left")] then
 		if self.sprinting then
@@ -38,13 +41,11 @@ function update(self, dt)
 		self.velocity.x = 0
 	end
 	
-	if not self.ground_contact and not self.climbing then
+	if not self.ground_contact then
 		self.velocity = self.velocity + gravity
 	end
-
-
+	
 	go.set_position(go.get_position() + self.velocity * dt)
-
 
 	self.correction = vmath.vector3()
 	self.sprinting = false
@@ -71,35 +72,46 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("contact_point_response") then
 		if message.group == hash("ground") then
 			handle_geometry_contact(self, message.normal, message.distance)
+		elseif message.group == hash("weapon") then
+			msg.post("/sword#sword", "delete")
+			self.swordTaken = true
 		end
 	end
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("left") then
+	local status = " "
+	if not self.swordTaken then
+		status = "normal_"
+	else
+		status = "sword_"
+	end 
+	if action_id == hash("left") and not (action_id == hash("right")) then
 		self.actions[action_id] = true
 		if action.pressed then
-			msg.post("#sprite", "play_animation", {id = hash("walk_left")})
+			msg.post("#sprite", "play_animation", {id = hash(status .. "walk_left")})
 		elseif action.released then
 			self.actions[action_id] = nil
-			msg.post("#sprite", "play_animation", {id = hash("idle_left")})
+			msg.post("#sprite", "play_animation", {id = hash(status .. "idle_left")})
 		end
-	elseif action_id == hash("right") then
+	elseif action_id == hash("right") and not (action_id == hash("left")) then
 		self.actions[action_id] = true
 		if action.pressed then
-			msg.post("#sprite", "play_animation", {id = hash("walk_right")})
+			msg.post("#sprite", "play_animation", {id = hash(status .. "walk_right")})
 		elseif action.released then
 			self.actions[action_id] = nil
-			msg.post("#sprite", "play_animation", {id = hash("idle_right")})
+			msg.post("#sprite", "play_animation", {id = hash(status .. "idle_right")})
 		end
 	elseif action_id == hash("sprint") then
 		self.sprinting = true
 	elseif action_id == hash("up") and action.pressed then
-		self.velocity.y = 500
+		if not self.ground_contact then
+			self.onAir = trues
+		else
+			self.onAir = false
+		end
+		if not self.onAir then
+			self.velocity.y = 500
+		end
 	end
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Remove this function if not needed
 end
